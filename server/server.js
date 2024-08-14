@@ -27,10 +27,10 @@ const upload = multer({
 
 // Create MySQL connection
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'computer', // Replace with your MySQL password
-  database: 'anyhomework' // Replace with your database name
+  host: 'bjdgaidp5yqydgk7kxpc-mysql.services.clever-cloud.com',
+  user: 'u5k8ncdd0jkkcoct',
+  password: 'lFjPmg9DAkgEtuGuijWK', // Replace with your MySQL password
+  database: 'bjdgaidp5yqydgk7kxpc' // Replace with your database name
 });
 
 db.connect((err) => {
@@ -57,23 +57,27 @@ app.post('/api/upload', upload.single('file'), (req, res) => {
 
   const { originalname: fileName } = file;
   const { name, random_number } = body;
-  const date = formatDateToMySQL(new Date()); // Format the current date to MySQL DATETIME format
+  const date = formatDateToMySQL(new Date());
 
   const query = 'INSERT INTO files (name, file, random_number, date) VALUES (?, ?, ?, ?)';
   const values = [name, fileName, random_number, date];
 
+  console.log('Executing query:', query);
+  console.log('With values:', values);
+
   db.query(query, values, (err, result) => {
     if (err) {
-      console.error('Database query error:', err);
-      return res.status(500).json({ error: 'Error saving file data to database' });
+      console.error('Database query error:', err.message);
+      return res.status(500).json({ error: 'Failed to upload file: Error saving file data to database' });
     }
 
     res.status(200).json({
       message: 'File uploaded successfully!',
-      random_number: random_number // Include the random number in the response
+      random_number: random_number
     });
   });
 });
+
 
 // API endpoint to retrieve all files
 app.get('/api/files', (req, res) => {

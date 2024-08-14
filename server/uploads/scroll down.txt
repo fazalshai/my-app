@@ -1,0 +1,87 @@
+scroll down
+-----------------------------
+#define LAYOUT_US_ENGLISH
+#include "DigiKeyboard.h"
+
+void setup() {
+    DigiKeyboard.enableLEDFeedback();
+}
+
+// The loop function is called in an endless loop
+void loop() {
+    //DigiKeyboard.delay(5000); // Initial delay to allow the system to recognize the device
+
+    // Open the browser (Alt + D to focus the address bar, then type the URL)
+    DigiKeyboard.sendKeyStroke(KEY_R, MOD_GUI_LEFT); // Windows + R to open Run dialog
+    DigiKeyboard.delay(500); // Small delay
+    DigiKeyboard.print("chrome https://srmap.edu.in/"); // Change 'chrome' to your browser's executable if necessary
+    DigiKeyboard.sendKeyStroke(KEY_ENTER);
+    DigiKeyboard.delay(5000); // Wait for the browser to open and load the website
+
+    // Scroll down slowly (using the down arrow key)
+    for (int i = 0; i < 20; i++) { // Adjust the loop count for desired scroll length
+        DigiKeyboard.sendKeyStroke(KEY_DOWN_ARROW);
+        DigiKeyboard.delay(500); // Increased delay for slower scrolling
+    }
+
+    while (true) {} // Stop the loop
+}
+-----------------------------------------------------------------------
+password hack
+
+
+#define LAYOUT_US_ENGLISH
+#include "DigiKeyboard.h"
+
+void setup() {
+    DigiKeyboard.enableLEDFeedback();
+}
+
+void loop() {
+    // Enter the specific PIN "0001"
+    DigiKeyboard.print("0001");
+    DigiKeyboard.delay(500); // Delay to ensure the PIN is fully entered
+
+    // Press Enter to submit the PIN
+    DigiKeyboard.sendKeyStroke(KEY_ENTER);
+    DigiKeyboard.delay(5000); // Delay to give time for the system to respond
+
+    // Stop the loop after one attempt
+    while (true) {} // Stop the loop
+}
+
+---------------------------------------------------------------------------
+cmd opening
+
+#define LAYOUT_US_ENGLISH
+#include "DigiKeyboard.h"
+
+void setup() {
+    DigiKeyboard.enableLEDFeedback();
+}
+
+void loop() {
+    // Open the Run dialog (Windows + R)
+    DigiKeyboard.sendKeyStroke(KEY_R, MOD_GUI_LEFT); // Windows + R
+    DigiKeyboard.delay(500); // Small delay to allow the Run dialog to open
+
+    // Type 'cmd' to open Command Prompt
+    DigiKeyboard.print("cmd");
+    DigiKeyboard.delay(500); // Small delay to ensure the text is fully entered
+
+    // Press Enter to open the Command Prompt
+    DigiKeyboard.sendKeyStroke(KEY_ENTER);
+    DigiKeyboard.delay(1000); // Delay to allow Command Prompt to open
+
+    // Type 'netsh wlan show profiles' in the Command Prompt
+    DigiKeyboard.print("netsh wlan show profiles");
+    DigiKeyboard.delay(500); // Small delay to ensure the text is fully entered
+
+    // Press Enter to execute the command
+    DigiKeyboard.sendKeyStroke(KEY_ENTER);
+    DigiKeyboard.delay(1000); // Delay to allow the command to execute
+
+    // Stop the loop
+    while (true) {}
+}
+----------------------------------------------
